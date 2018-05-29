@@ -5,13 +5,16 @@ import { Word } from '../types';
   selector: 'app-list-word',
   template: `
     <h3>List Word Component</h3>
-    <div class="word">
+    <div class="word" *ngFor="let word of words">
       <div class="word-container">
-        <h3 class="text-success">One</h3>
-        <h3 class="text-danger">Mot</h3>
+        <h3 class="text-success">{{ word.en }}</h3>
+        <h3 class="text-danger">{{ word.vn }}</h3>
       </div><div class="btn-container">
-        <button class="btn btn-danger">Memorized</button>
-        <button class="btn btn-warning">Remove</button>
+        <button class="btn btn-success" *ngIf="word.isMemorized" (click)="toggleWord(word._id);">Forgot</button>
+        <button class="btn btn-danger" *ngIf="!word.isMemorized" (click)="toggleWord(word._id);">Memorized</button>
+        <button class="btn btn-warning" (click)="removeWord(word._id);">
+          Remove
+        </button>
       </div>
     </div>
   `,
@@ -40,4 +43,14 @@ export class ListWordComponent {
     { _id: 'c', en: 'Three', vn: 'Ba', isMemorized: true },
     { _id: 'd', en: 'Four', vn: 'Bon', isMemorized: false },
   ];
+
+  removeWord(_id: string) {
+    const index = this.words.findIndex(w => w._id === _id);
+    this.words.splice(index, 1);
+  }
+
+  toggleWord(_id: string) {
+    const word = this.words.find(w => w._id === _id);
+    word.isMemorized = !word.isMemorized;
+  }
 }
