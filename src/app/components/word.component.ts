@@ -8,13 +8,26 @@ import { Component } from '@angular/core';
     <button class="btn btn-success" (click)="increase();">Increase</button>
     <button class="btn btn-danger" (click)="descrease();">Descrease</button>
     <button class="btn btn-warning" (click)="reset();">Reset</button>
+    <hr>
+    <div class="word">
+      <h3>{{ word.en }}</h3>
+      <p>{{ word.vn }}</p>
+    </div>
   `
 })
 
 export class WordComponent {
+  word: Word = { _id: 'a', en: 'One', vn: 'Mot', isMemorized: false };
   count = 1;
 
   increase() { this.count++; }
   descrease() { this.count--; }
   reset() { this.count = 1; }
+}
+
+interface Word {
+  _id: string;
+  en: string;
+  vn: string;
+  isMemorized: boolean;
 }
