@@ -23,14 +23,18 @@ import { Word } from '../types';
       <button class="btn btn-danger" (click)="toggle();" *ngIf="!word.isMemorized">
         Memorized
       </button>
-    </div>
+      <br>
+      <br>
+      <button class="btn btn-primary" disabled="false">SHOW</button>
+      <img [src]="imageSrc" />
+      </div>
   `
 })
 
 export class WordComponent {
   word: Word = { _id: 'a', en: 'One', vn: 'Mot', isMemorized: false };
   count = 1;
-
+  imageSrc = 'https://zmp3-static.zadn.vn/skins/zmp3-v5.1/images/logo.png';
   increase() { this.count++; }
   descrease() { this.count--; }
   reset() { this.count = 1; }
