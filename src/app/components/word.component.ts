@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Word } from '../types';
 
 @Component({
   selector: 'app-word',
@@ -34,11 +35,4 @@ export class WordComponent {
   descrease() { this.count--; }
   reset() { this.count = 1; }
   toggle() { this.word.isMemorized = !this.word.isMemorized; }
-}
-
-interface Word {
-  _id: string;
-  en: string;
-  vn: string;
-  isMemorized: boolean;
 }
