@@ -2,16 +2,19 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
-import { WordComponent } from './word/word.component';
 import { ListWordComponent } from './list-word/list-word.component';
+
 import { WordFormComponent } from './components/word-form.component';
+import { WordComponent } from './components/word.component';
+import { WordFilterComponent } from './components/word-filter/word-filter.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     WordComponent,
     ListWordComponent,
-    WordFormComponent
+    WordFormComponent,
+    WordFilterComponent
   ],
   imports: [
     BrowserModule
