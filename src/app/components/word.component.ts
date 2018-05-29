@@ -16,8 +16,11 @@ import { Component } from '@angular/core';
         {{ word.en }}
       </h3>
       <p>{{ word.vn }}</p>
-      <button class="{{ word.isMemorized ? 'btn btn-success': 'btn btn-danger' }}" (click)="toggle();">
-        {{ word.isMemorized ? 'Forgot': 'Memorized' }}
+      <button class="btn btn-success" (click)="toggle();" *ngIf="word.isMemorized">
+        Forgot
+      </button>
+      <button class="btn btn-danger" (click)="toggle();" *ngIf="!word.isMemorized">
+        Memorized
       </button>
     </div>
   `
