@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
     selector: 'app-word-form',
@@ -26,7 +26,7 @@ import { Component } from '@angular/core';
 export class WordFormComponent {
     txtEn = '';
     txtVn = '';
-    shouldShowForm = false;
+    @Input() shouldShowForm: boolean;
 
     toggleForm() {}
 }

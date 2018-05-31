@@ -5,7 +5,7 @@ import { Word } from '../types';
   selector: 'app-list-word',
   template: `
     <h3>List Word Component</h3>
-    <app-word-form></app-word-form>
+    <app-word-form [shouldShowForm]="shouldShowForm"></app-word-form>
     <app-word-filter></app-word-filter>
     <app-word *ngFor="let word of words" [wordInfo]="word"></app-word>
   `
@@ -18,4 +18,5 @@ export class ListWordComponent {
     { _id: 'c', en: 'Three', vn: 'Ba', isMemorized: true },
     { _id: 'd', en: 'Four', vn: 'Bon', isMemorized: false },
   ];
+  shouldShowForm = false;
 }
