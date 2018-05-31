@@ -7,7 +7,7 @@ import { ListWordComponent } from './components/list-word.component';
 
 import { WordFormComponent } from './components/word-form.component';
 import { WordComponent } from './components/word.component';
-import { WordFilterComponent } from './components/word-filter/word-filter.component';
+import { WordFilterComponent } from './components/word-filter.component';
 
 @NgModule({
   declarations: [
