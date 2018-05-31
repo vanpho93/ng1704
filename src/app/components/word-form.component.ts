@@ -1,9 +1,9 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
     selector: 'app-word-form',
     template: `
-      <button class="btn btn-success" *ngIf="!shouldShowForm" (click)="toggleForm();" style="margin-bottom: 10px">
+      <button class="btn btn-success" *ngIf="!shouldShowForm" (click)="onToggleForm.emit();" style="margin-bottom: 10px">
         +
       </button>
       <div class="word form-group" style="width: 200px" *ngIf="shouldShowForm">
@@ -15,7 +15,7 @@ import { Component, Input } from '@angular/core';
               <button class="btn btn-success" (click)="addWord();">
                   Add word
               </button>
-              <button class="btn btn-danger" (click)="toggleForm();">
+              <button class="btn btn-danger" (click)="onToggleForm.emit();">
                   Cancel
               </button>
           </div>
@@ -27,6 +27,5 @@ export class WordFormComponent {
     txtEn = '';
     txtVn = '';
     @Input() shouldShowForm: boolean;
-
-    toggleForm() {}
+    @Output() onToggleForm = new EventEmitter<void>();
 }

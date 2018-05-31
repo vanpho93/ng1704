@@ -5,7 +5,10 @@ import { Word } from '../types';
   selector: 'app-list-word',
   template: `
     <h3>List Word Component</h3>
-    <app-word-form [shouldShowForm]="shouldShowForm"></app-word-form>
+    <app-word-form
+      [shouldShowForm]="shouldShowForm"
+      (onToggleForm)="onToggleForm();"
+    ></app-word-form>
     <app-word-filter></app-word-filter>
     <app-word *ngFor="let word of words" [wordInfo]="word"></app-word>
   `
@@ -19,4 +22,8 @@ export class ListWordComponent {
     { _id: 'd', en: 'Four', vn: 'Bon', isMemorized: false },
   ];
   shouldShowForm = false;
+
+  onToggleForm() {
+    this.shouldShowForm = !this.shouldShowForm;
+  }
 }
