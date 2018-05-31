@@ -5,7 +5,7 @@ import { Word } from '../types';
   selector: 'app-list-word',
   template: `
     <h3>List Word Component</h3>
-    <button class="btn btn-success" *ngIf="!shouldShowForm" (click)="toggleForm();">
+    <button class="btn btn-success" *ngIf="!shouldShowForm" (click)="toggleForm();" style="margin-bottom: 10px">
       +
     </button>
     <div class="word form-group" style="width: 200px" *ngIf="shouldShowForm">
@@ -22,6 +22,11 @@ import { Word } from '../types';
             </button>
         </div>
     </div>
+    <select class="form-control" [(ngModel)]="filterMode" style="width: 200px">
+      <option value="SHOW_ALL">SHOW ALL</option>
+      <option value="SHOW_FORGOT">SHOW FORGOT</option>
+      <option value="SHOW_MEMORIZED">SHOW MEMORIZED</option>
+    </select>
     <div class="word" *ngFor="let word of words">
       <div class="word-container">
         <h3 class="text-success">{{ word.en }}</h3>
@@ -57,6 +62,7 @@ export class ListWordComponent {
   txtEn = '';
   txtVn = '';
   shouldShowForm = false;
+  filterMode = 'SHOW_ALL'; // SHOW_FORGOT SHOW_MEMORIZED
   words: Word[] = [
     { _id: 'a', en: 'One', vn: 'Mot', isMemorized: false },
     { _id: 'b', en: 'Two', vn: 'Hai', isMemorized: true },
