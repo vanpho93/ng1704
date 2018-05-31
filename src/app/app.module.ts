@@ -8,6 +8,7 @@ import { ListWordComponent } from './components/list-word.component';
 import { WordFormComponent } from './components/word-form.component';
 import { WordComponent } from './components/word.component';
 import { WordFilterComponent } from './components/word-filter.component';
+import { ParentComponent, ChildComponent } from './components/interact';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,9 @@ import { WordFilterComponent } from './components/word-filter.component';
     WordComponent,
     ListWordComponent,
     WordFormComponent,
-    WordFilterComponent
+    WordFilterComponent,
+    ParentComponent,
+    ChildComponent
   ],
   imports: [
     BrowserModule,
