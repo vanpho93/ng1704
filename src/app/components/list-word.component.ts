@@ -51,6 +51,9 @@ import { Word } from '../types';
 })
 
 export class ListWordComponent {
+  txtEn = '';
+  txtVn = '';
+
   words: Word[] = [
     { _id: 'a', en: 'One', vn: 'Mot', isMemorized: false },
     { _id: 'b', en: 'Two', vn: 'Hai', isMemorized: true },
@@ -66,5 +69,17 @@ export class ListWordComponent {
   toggleWord(_id: string) {
     const word = this.words.find(w => w._id === _id);
     word.isMemorized = !word.isMemorized;
+  }
+
+  addWord() {
+    const newWord: Word = {
+      _id: Date.now() + '',
+      en: this.txtEn,
+      vn: this.txtVn,
+      isMemorized: false
+    };
+    this.words.unshift(newWord);
+    this.txtEn = '';
+    this.txtVn = '';
   }
 }
