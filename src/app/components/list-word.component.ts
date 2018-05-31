@@ -5,7 +5,10 @@ import { Word } from '../types';
   selector: 'app-list-word',
   template: `
     <h3>List Word Component</h3>
-    <div class="word form-group" style="width: 200px">
+    <button class="btn btn-success" *ngIf="!shouldShowForm" (click)="toggleForm();">
+      +
+    </button>
+    <div class="word form-group" style="width: 200px" *ngIf="shouldShowForm">
         <input placeholder="English" class="form-control" [(ngModel)]="txtEn"/>
         <br />
         <input placeholder="Vietnamese" class="form-control" [(ngModel)]="txtVn"/>
@@ -14,7 +17,7 @@ import { Word } from '../types';
             <button class="btn btn-success" (click)="addWord();">
                 Add word
             </button>
-            <button class="btn btn-danger">
+            <button class="btn btn-danger" (click)="toggleForm();">
                 Cancel
             </button>
         </div>
@@ -53,7 +56,7 @@ import { Word } from '../types';
 export class ListWordComponent {
   txtEn = '';
   txtVn = '';
-
+  shouldShowForm = false;
   words: Word[] = [
     { _id: 'a', en: 'One', vn: 'Mot', isMemorized: false },
     { _id: 'b', en: 'Two', vn: 'Hai', isMemorized: true },
@@ -82,4 +85,6 @@ export class ListWordComponent {
     this.txtEn = '';
     this.txtVn = '';
   }
+
+  toggleForm() { this.shouldShowForm = !this.shouldShowForm; }
 }
