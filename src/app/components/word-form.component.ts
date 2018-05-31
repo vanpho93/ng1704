@@ -1,4 +1,5 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Word } from '../types';
 
 @Component({
     selector: 'app-word-form',
@@ -28,4 +29,15 @@ export class WordFormComponent {
     txtVn = '';
     @Input() shouldShowForm: boolean;
     @Output() onToggleForm = new EventEmitter<void>();
+    @Output() onAddWord = new EventEmitter<Word>();
+
+    addWord() {
+        const word: Word = {
+            _id: Date.now() + '',
+            en: this.txtEn,
+            vn: this.txtVn,
+            isMemorized: false
+        };
+        this.onAddWord.emit(word);
+    }
 }

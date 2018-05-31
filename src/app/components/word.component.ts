@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Word } from '../types';
 
 @Component({
@@ -10,9 +10,9 @@ import { Word } from '../types';
       <h3 class="text-danger">{{ wordInfo.vn }}</h3>
     </div>
     <div class="btn-container">
-      <button class="btn btn-success" *ngIf="wordInfo.isMemorized">Forgot</button>
-      <button class="btn btn-danger" *ngIf="!wordInfo.isMemorized">Memorized</button>
-      <button class="btn btn-warning">
+      <button class="btn btn-success" *ngIf="wordInfo.isMemorized" (click)="onToggleWord.emit(wordInfo._id)">Forgot</button>
+      <button class="btn btn-danger" *ngIf="!wordInfo.isMemorized" (click)="onToggleWord.emit(wordInfo._id)">Memorized</button>
+      <button class="btn btn-warning" (click)="onRemoveWord.emit(wordInfo._id)">
         Remove
       </button>
     </div>
@@ -22,4 +22,6 @@ import { Word } from '../types';
 
 export class WordComponent {
   @Input() wordInfo: Word;
+  @Output() onRemoveWord = new EventEmitter<string>();
+  @Output() onToggleWord = new EventEmitter<string>();
 }
