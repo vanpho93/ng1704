@@ -27,7 +27,7 @@ import { Word } from '../types';
       <option value="SHOW_FORGOT">SHOW FORGOT</option>
       <option value="SHOW_MEMORIZED">SHOW MEMORIZED</option>
     </select>
-    <div class="word" *ngFor="let word of words">
+    <div class="word" *ngFor="let word of filteredWords">
       <div class="word-container">
         <h3 class="text-success">{{ word.en }}</h3>
         <h3 class="text-danger">{{ word.vn }}</h3>
@@ -93,4 +93,12 @@ export class ListWordComponent {
   }
 
   toggleForm() { this.shouldShowForm = !this.shouldShowForm; }
+
+  get filteredWords(): Word[] {
+    return this.words.filter(word => {
+      if (this.filterMode === 'SHOW_ALL') return true;
+      if (this.filterMode === 'SHOW_FORGOT') return !word.isMemorized;
+      return word.isMemorized;
+    });
+  }
 }
