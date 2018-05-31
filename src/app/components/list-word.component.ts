@@ -7,9 +7,7 @@ import { Word } from '../types';
     <h3>List Word Component</h3>
     <app-word-form></app-word-form>
     <app-word-filter></app-word-filter>
-    <div *ngFor="let word of words">
-      <app-word></app-word>
-    </div>
+    <app-word *ngFor="let word of words" [wordInfo]="word"></app-word>
   `
 })
 
