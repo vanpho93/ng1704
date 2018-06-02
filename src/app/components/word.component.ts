@@ -1,6 +1,5 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Word } from '../types';
-import { WordService } from '../services/word.service';
 
 @Component({
   selector: 'app-word',
@@ -11,9 +10,9 @@ import { WordService } from '../services/word.service';
       <h3 class="text-danger">{{ wordInfo.vn }}</h3>
     </div>
     <div class="btn-container">
-      <button class="btn btn-success" *ngIf="wordInfo.isMemorized" (click)="onToggleWord.emit(wordInfo._id)">Forgot</button>
-      <button class="btn btn-danger" *ngIf="!wordInfo.isMemorized" (click)="onToggleWord.emit(wordInfo._id)">Memorized</button>
-      <button class="btn btn-warning" (click)="onRemoveWord.emit(wordInfo._id);">
+      <button class="btn btn-success" *ngIf="wordInfo.isMemorized">Forgot</button>
+      <button class="btn btn-danger" *ngIf="!wordInfo.isMemorized">Memorized</button>
+      <button class="btn btn-warning">
         Remove
       </button>
     </div>
@@ -22,9 +21,5 @@ import { WordService } from '../services/word.service';
 })
 
 export class WordComponent {
-  constructor(private wordService: WordService) {}
-
   @Input() wordInfo: Word;
-  @Output() onRemoveWord = new EventEmitter<string>();
-  @Output() onToggleWord = new EventEmitter<string>();
 }
