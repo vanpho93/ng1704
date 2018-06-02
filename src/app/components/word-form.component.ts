@@ -5,7 +5,7 @@ import { Word } from '../types';
 @Component({
     selector: 'app-word-form',
     template: `
-      <button class="btn btn-success" *ngIf="!shouldShowForm" style="margin-bottom: 10px">
+      <button class="btn btn-success" *ngIf="!shouldShowForm" style="margin-bottom: 10px" (click)="toggleForm();">
         +
       </button>
       <div class="word form-group" style="width: 200px" *ngIf="shouldShowForm">
@@ -17,7 +17,7 @@ import { Word } from '../types';
               <button class="btn btn-success">
                   Add word
               </button>
-              <button class="btn btn-danger">
+              <button class="btn btn-danger" (click)="toggleForm();">
                   Cancel
               </button>
           </div>
@@ -30,7 +30,11 @@ export class WordFormComponent {
     txtVn = '';
     shouldShowForm: boolean;
     constructor(private store: Store<any>) {
-        this.store.select('shouldShowForm').subscribe(s => this.shouldShowForm = s);
+        this.store.select('shouldShowForm')
+            .subscribe(s => this.shouldShowForm = s);
     }
+
+    toggleForm() { this.store.dispatch({ type: 'TOGGLE_FORM' }); }
+
     addWord() {}
 }

@@ -11,6 +11,7 @@ export function wordsReducer(state = [], action) {
 }
 
 export function shouldShowFormReducer(state = true, action) {
+    if (action.type === 'TOGGLE_FORM') return !state;
     return state;
 }
 
