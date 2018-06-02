@@ -7,10 +7,11 @@ export function countReducer(state = 1, action) {
 }
 
 export function wordsReducer(state = [], action) {
+    if (action.type === 'SET_WORDS') return action.words;
     return state;
 }
 
-export function shouldShowFormReducer(state = true, action) {
+export function shouldShowFormReducer(state = false, action) {
     if (action.type === 'TOGGLE_FORM') return !state;
     return state;
 }
