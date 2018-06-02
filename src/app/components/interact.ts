@@ -29,7 +29,7 @@ export class ParentComponent {
 export class ChildComponent {
   constructor(private store: Store<{ count: number }>) {}
 
-  increase() { this.store.dispatch({ type: 'INCREASE' }); }
-  decrease() { this.store.dispatch({ type: 'DECREASE' }); }
+  increase() { this.store.dispatch({ type: 'CHANGE', change: 1 }); }
+  decrease() { this.store.dispatch({ type: 'CHANGE', change: -1 }); }
   reset() { this.store.dispatch({ type: 'RESET' }); }
 }
