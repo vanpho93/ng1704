@@ -23,18 +23,14 @@ import { WordService } from '../services/word.service';
 })
 
 export class ListWordComponent {
-  constructor(private wordService: WordService) {
-    this.wordService.getAllWords();
-  }
-
   @ViewChild(WordFilterComponent) filterComponent: WordFilterComponent;
-  words: Word[] = [
-    { _id: 'a', en: 'One', vn: 'Mot', isMemorized: false },
-    { _id: 'b', en: 'Two', vn: 'Hai', isMemorized: true },
-    { _id: 'c', en: 'Three', vn: 'Ba', isMemorized: true },
-    { _id: 'd', en: 'Four', vn: 'Bon', isMemorized: false },
-  ];
+  words: Word[] = [];
   shouldShowForm = false;
+
+  constructor(private wordService: WordService) {
+    this.wordService.getAllWords()
+    .then(resJson => this.words = resJson.words);
+  }
 
   onToggleForm() {
     this.shouldShowForm = !this.shouldShowForm;
