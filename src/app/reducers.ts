@@ -6,6 +6,18 @@ export function countReducer(state = 1, action) {
     return state;
 }
 
+export function wordsReducer(state = [], action) {
+    return state;
+}
+
+export function shouldShowFormReducer(state = true, action) {
+    return state;
+}
+
+export function filterModeReducer(state = 'SHOW_ALL', action) {
+    return state;
+}
+
 /*
 
 1. Dinh nghia store

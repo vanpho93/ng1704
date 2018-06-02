@@ -13,7 +13,7 @@ import { WordFilterComponent } from './components/word-filter.component';
 import { ParentComponent, ChildComponent } from './components/interact';
 import { WordService } from './services/word.service';
 
-import { countReducer } from './reducers';
+import { countReducer, wordsReducer, shouldShowFormReducer, filterModeReducer } from './reducers';
 
 @NgModule({
   declarations: [
@@ -29,7 +29,12 @@ import { countReducer } from './reducers';
     BrowserModule,
     FormsModule,
     HttpModule,
-    StoreModule.forRoot({ count: countReducer })
+    StoreModule.forRoot({
+      count: countReducer,
+      words: wordsReducer,
+      shouldShowForm: shouldShowFormReducer,
+      filterMode: filterModeReducer
+    })
   ],
   providers: [WordService],
   bootstrap: [AppComponent]

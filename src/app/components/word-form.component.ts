@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Store } from '@ngrx/store';
 import { Word } from '../types';
 
 @Component({
@@ -27,7 +28,9 @@ import { Word } from '../types';
 export class WordFormComponent {
     txtEn = '';
     txtVn = '';
-    shouldShowForm = false;
-
+    shouldShowForm: boolean;
+    constructor(private store: Store<any>) {
+        this.store.select('shouldShowForm').subscribe(s => this.shouldShowForm = s);
+    }
     addWord() {}
 }
