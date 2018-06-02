@@ -9,6 +9,7 @@ import { WordFormComponent } from './components/word-form.component';
 import { WordComponent } from './components/word.component';
 import { WordFilterComponent } from './components/word-filter.component';
 import { ParentComponent, ChildComponent } from './components/interact';
+import { WordService } from './services/word.service';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,7 @@ import { ParentComponent, ChildComponent } from './components/interact';
     BrowserModule,
     FormsModule
   ],
-  providers: [],
+  providers: [WordService],
   bootstrap: [AppComponent]
 })
 
