@@ -7,11 +7,13 @@ export function countReducer(state = 1, action) {
 }
 
 export function wordsReducer(state = [], action) {
+    if (action.type === 'ADD_WORD') return [action.word, ...state];
     if (action.type === 'SET_WORDS') return action.words;
     return state;
 }
 
 export function shouldShowFormReducer(state = false, action) {
+    if (action.type === 'ADD_WORD') return false;
     if (action.type === 'TOGGLE_FORM') return !state;
     return state;
 }

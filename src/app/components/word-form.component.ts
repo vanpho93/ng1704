@@ -14,7 +14,7 @@ import { Word } from '../types';
           <input placeholder="Vietnamese" class="form-control" [(ngModel)]="txtVn"/>
           <br />
           <div class="btn-container">
-              <button class="btn btn-success">
+              <button class="btn btn-success" (click)="addWord();">
                   Add word
               </button>
               <button class="btn btn-danger" (click)="toggleForm();">
@@ -36,5 +36,15 @@ export class WordFormComponent {
 
     toggleForm() { this.store.dispatch({ type: 'TOGGLE_FORM' }); }
 
-    addWord() {}
+    addWord() {
+        const word: Word = {
+            _id: Date.now() + '',
+            en: this.txtEn,
+            vn: this.txtVn,
+            isMemorized: false
+        };
+        this.store.dispatch({ type: 'ADD_WORD', word });
+        this.txtEn = '';
+        this.txtVn = '';
+    }
 }
