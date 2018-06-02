@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { WordFilterComponent } from './word-filter.component';
 import { Word } from '../types';
+import { WordService } from '../services/word.service';
 
 @Component({
   selector: 'app-list-word',
@@ -22,6 +23,10 @@ import { Word } from '../types';
 })
 
 export class ListWordComponent {
+  constructor(private wordService: WordService) {
+    this.wordService.getAllWords();
+  }
+
   @ViewChild(WordFilterComponent) filterComponent: WordFilterComponent;
   words: Word[] = [
     { _id: 'a', en: 'One', vn: 'Mot', isMemorized: false },
