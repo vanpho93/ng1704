@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { Word } from '../types';
+import { Word, AppState } from '../types';
 
 @Component({
   selector: 'app-word',
@@ -24,7 +24,7 @@ import { Word } from '../types';
 export class WordComponent {
   @Input() wordInfo: Word;
 
-  constructor(private store: Store<any>) {}
+  constructor(private store: Store<AppState>) {}
 
   removeWord() {
     this.store.dispatch({ type: 'REMOVE_WORD', _id: this.wordInfo._id });

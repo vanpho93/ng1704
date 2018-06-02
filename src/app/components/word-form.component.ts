@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { Word } from '../types';
+import { Word, AppState } from '../types';
 
 @Component({
     selector: 'app-word-form',
@@ -29,7 +29,7 @@ export class WordFormComponent {
     txtEn = '';
     txtVn = '';
     shouldShowForm: boolean;
-    constructor(private store: Store<any>) {
+    constructor(private store: Store<AppState>) {
         this.store.select('shouldShowForm')
             .subscribe(s => this.shouldShowForm = s);
     }

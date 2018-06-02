@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { WordFilterComponent } from './word-filter.component';
-import { Word } from '../types';
+import { Word, AppState } from '../types';
 import { WordService } from '../services/word.service';
 
 @Component({
@@ -20,9 +20,8 @@ import { WordService } from '../services/word.service';
 export class ListWordComponent {
   words: Word[];
   filterMode: string;
-  constructor(private wordService: WordService, private store: Store<any>) {
-    this.wordService.getAllWords()
-    .then(resJson => this.store.dispatch({ type: 'SET_WORDS', words: resJson.words }));
+  constructor(private wordService: WordService, private store: Store<AppState>) {
+    this.wordService.getAllWords();
     this.store.select('words').subscribe(w => this.words = w);
     this.store.select('filterMode').subscribe(f => this.filterMode = f);
   }

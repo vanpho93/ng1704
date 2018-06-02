@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
+import { AppState } from '../types';
 
 @Component({
   selector: 'app-word-filter',
@@ -18,7 +19,7 @@ import { Store } from '@ngrx/store';
 
 export class WordFilterComponent {
   filterMode: string;
-  constructor(private store: Store<any>) {
+  constructor(private store: Store<AppState>) {
     this.store.select('filterMode').subscribe(f => this.filterMode = f);
   }
 

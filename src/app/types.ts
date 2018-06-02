@@ -4,3 +4,10 @@ export interface Word {
     vn: string;
     isMemorized: boolean;
 }
+
+export interface AppState {
+    count: number;
+    words: Word[];
+    shouldShowForm: boolean;
+    filterMode: string;
+}
