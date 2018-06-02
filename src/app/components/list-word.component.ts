@@ -19,19 +19,18 @@ import { WordService } from '../services/word.service';
 
 export class ListWordComponent {
   words: Word[];
-
+  filterMode: string;
   constructor(private wordService: WordService, private store: Store<any>) {
     this.wordService.getAllWords()
     .then(resJson => this.store.dispatch({ type: 'SET_WORDS', words: resJson.words }));
     this.store.select('words').subscribe(w => this.words = w);
+    this.store.select('filterMode').subscribe(f => this.filterMode = f);
   }
 
   get filteredWords(): Word[] {
-    // const {filterMode} = this.filterComponent;
-    const filterMode = 'SHOW_ALL';
     return this.words.filter(w => {
-      if (filterMode === 'SHOW_ALL') return true;
-      if (filterMode === 'SHOW_MEMORIZED') return w.isMemorized;
+      if (this.filterMode === 'SHOW_ALL') return true;
+      if (this.filterMode === 'SHOW_MEMORIZED') return w.isMemorized;
       return !w.isMemorized;
     });
   }
