@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Word, AppState } from '../types';
+import { WordService } from '../services/word.service';
 
 @Component({
   selector: 'app-word',
@@ -24,10 +25,10 @@ import { Word, AppState } from '../types';
 export class WordComponent {
   @Input() wordInfo: Word;
 
-  constructor(private store: Store<AppState>) {}
+  constructor(private store: Store<AppState>, private wordSerivce: WordService) {}
 
   removeWord() {
-    this.store.dispatch({ type: 'REMOVE_WORD', _id: this.wordInfo._id });
+    this.wordSerivce.removeWord(this.wordInfo._id);
   }
 
   toggleWord() {
