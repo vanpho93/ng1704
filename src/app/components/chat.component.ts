@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import * as io from 'socket.io-client';
 
 @Component({
   selector: 'app-chat',
@@ -12,4 +13,5 @@ import { Component } from '@angular/core';
 })
 
 export class ChatComponent {
+  socket = io('http://localhost:4000');
 }
