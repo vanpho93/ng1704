@@ -16,6 +16,7 @@ import { ParentComponent, ChildComponent } from './components/interact';
 import { WordService } from './services/word.service';
 
 import { countReducer, wordsReducer, shouldShowFormReducer, filterModeReducer } from './reducers';
+import { RoundPipe } from './pipes/round.pipe';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { countReducer, wordsReducer, shouldShowFormReducer, filterModeReducer } 
     ParentComponent,
     ChildComponent,
     ChatComponent,
-    PipeComponent
+    PipeComponent,
+    RoundPipe
   ],
   imports: [
     BrowserModule,
