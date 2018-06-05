@@ -12,6 +12,7 @@ import { WordComponent } from './components/word.component';
 import { WordFilterComponent } from './components/word-filter.component';
 import { ChatComponent } from './components/chat.component';
 import { PipeComponent } from './components/pipe.component';
+import { SignUpComponent } from './components/sign-up.component';
 import { ParentComponent, ChildComponent } from './components/interact';
 import { WordService } from './services/word.service';
 
@@ -29,7 +30,8 @@ import { RoundPipe } from './pipes/round.pipe';
     ChildComponent,
     ChatComponent,
     PipeComponent,
-    RoundPipe
+    RoundPipe,
+    SignUpComponent
   ],
   imports: [
     BrowserModule,
