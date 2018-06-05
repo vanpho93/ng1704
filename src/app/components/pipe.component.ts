@@ -9,6 +9,9 @@ import { Component } from '@angular/core';
       <pre>{{ nameUppercase }}</pre>
       <pre>{{ name | lowercase }}</pre>
       <pre>{{ name | titlecase }}</pre>
+      <pre>{{ x | round: true: 10 }}</pre>
+      <pre>{{ x | round: true }}</pre>
+      <pre>{{ x | round: false }}</pre>
       <pre>{{ x | round }}</pre>
     </div>
   `
