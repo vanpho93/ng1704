@@ -28,4 +28,11 @@ export class WordService {
         .then(response => response.json())
         .then(resJson => this.store.dispatch({ type: 'ADD_WORD', word: resJson.word }));
     }
+
+    toggleWord(_id: string, isMemorized: boolean) {
+        return this.http.put('https://word1203.herokuapp.com/word/' + _id, { isMemorized })
+        .toPromise()
+        .then(response => response.json())
+        .then(resJson => this.store.dispatch({ type: 'TOGGLE_WORD', _id }));
+    }
 }
