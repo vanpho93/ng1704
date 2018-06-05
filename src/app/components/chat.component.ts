@@ -8,16 +8,18 @@ import * as io from 'socket.io-client';
       <input class="form-control" placeholder="Enter your message" [(ngModel)]="txtMessage" />
       <br>
       <button class="btn btn-success" (click)="sendMessage()">Send Message</button>
+      <p class="text-info" *ngFor="let message of messages">{{ message }}</p>
     </div>
   `
 })
 
 export class ChatComponent implements OnInit {
   txtMessage = '';
-  socket = io('http://localhost:4000');
+  messages: string[] = [];
+  socket = io('https://socket1704.herokuapp.com');
 
   ngOnInit() {
-    this.socket.on('SERVER_SEND_MESSAGE', message => console.log(message));
+    this.socket.on('SERVER_SEND_MESSAGE', message => this.messages.push(message));
   }
 
   sendMessage() {

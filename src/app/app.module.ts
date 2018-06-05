@@ -11,6 +11,7 @@ import { WordFormComponent } from './components/word-form.component';
 import { WordComponent } from './components/word.component';
 import { WordFilterComponent } from './components/word-filter.component';
 import { ChatComponent } from './components/chat.component';
+import { PipeComponent } from './components/pipe.component';
 import { ParentComponent, ChildComponent } from './components/interact';
 import { WordService } from './services/word.service';
 
@@ -25,7 +26,8 @@ import { countReducer, wordsReducer, shouldShowFormReducer, filterModeReducer } 
     WordFilterComponent,
     ParentComponent,
     ChildComponent,
-    ChatComponent
+    ChatComponent,
+    PipeComponent
   ],
   imports: [
     BrowserModule,
