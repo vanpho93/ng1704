@@ -10,6 +10,7 @@ import { ListWordComponent } from './components/list-word.component';
 import { WordFormComponent } from './components/word-form.component';
 import { WordComponent } from './components/word.component';
 import { WordFilterComponent } from './components/word-filter.component';
+import { ChatComponent } from './components/chat.component';
 import { ParentComponent, ChildComponent } from './components/interact';
 import { WordService } from './services/word.service';
 
@@ -23,7 +24,8 @@ import { countReducer, wordsReducer, shouldShowFormReducer, filterModeReducer } 
     WordFormComponent,
     WordFilterComponent,
     ParentComponent,
-    ChildComponent
+    ChildComponent,
+    ChatComponent
   ],
   imports: [
     BrowserModule,
