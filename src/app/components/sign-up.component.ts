@@ -4,7 +4,13 @@ import { FormGroup, FormControl } from '@angular/forms';
 @Component({
   selector: 'app-sign-up',
   template: `
-  <form class="form-group" style="width: 200px; margin-top: 10px" [formGroup]="formSignUp">
+  <form
+    class="form-group"
+    style="width: 200px;
+    margin-top: 10px"
+    [formGroup]="formSignUp"
+    (ngSubmit)="signIn();"
+  >
     <input
       class="form-control"
       placeholder="Email"
@@ -34,5 +40,9 @@ export class SignUpComponent {
       email: new FormControl('teo@gmail.com'),
       password: new FormControl('123')
     });
+  }
+
+  signIn() {
+    alert(JSON.stringify(this.formSignUp.value));
   }
 }
