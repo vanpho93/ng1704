@@ -30,6 +30,16 @@ import { FormGroup, FormControl, Validators, ValidationErrors } from '@angular/f
       Invalid Password
     </i>
     <br *ngIf="!isPasswordValid">
+    <input
+      class="form-control"
+      placeholder="Re-enter Password"
+      formControlName="rePassword"
+      type="password"
+    />
+    <i style="color: red; margin: 10px; display: block;" *ngIf="isRePasswordValid">
+      Invalid Re-password
+    </i>
+    <br *ngIf="!isPasswordValid">
     <button class="btn btn-success" [disabled]="formSignUp.invalid">
       Sign In
     </button>
@@ -46,7 +56,8 @@ export class SignUpComponent {
   constructor() {
     this.formSignUp = new FormGroup({
       email: new FormControl('', [Validators.required, Validators.email, gmail]),
-      password: new FormControl('', [Validators.required, Validators.minLength(3)])
+      password: new FormControl('', [Validators.required, Validators.minLength(3)]),
+      rePassword: new FormControl('', [Validators.required, Validators.minLength(3)])
     });
   }
 
@@ -61,6 +72,11 @@ export class SignUpComponent {
 
   get isEmailValid() {
     const control = this.formSignUp.get('email');
+    return control.invalid && control.touched;
+  }
+
+  get isRePasswordValid() {
+    const control = this.formSignUp.get('rePassword');
     return control.invalid && control.touched;
   }
 }
