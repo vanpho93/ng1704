@@ -17,7 +17,7 @@ import { FormGroup, FormControl, Validators, ValidationErrors } from '@angular/f
       formControlName="email"
     />
     <i style="color: red; margin: 10px; display: block;" *ngIf="isEmailValid">
-      Invalid Email
+      {{ emailErrorMessage }}
     </i>
     <br *ngIf="!isEmailValid">
     <input
@@ -77,6 +77,14 @@ export class SignUpComponent {
   get isEmailValid() {
     const control = this.formSignUp.get('email');
     return control.invalid && control.touched;
+  }
+
+  get emailErrorMessage(): string {
+    const { errors } = this.formSignUp.get('email');
+    if (errors.required) return 'Bạn cần nhập email';
+    if (errors.email) return 'Email không hợp lệ';
+    if (errors.gmail) return 'Email phải là gmail';
+    return null;
   }
 
   get isRePasswordValid() {
