@@ -39,6 +39,9 @@ import { FormGroup, FormControl, Validators, ValidationErrors } from '@angular/f
     <i style="color: red; margin: 10px; display: block;" *ngIf="isRePasswordValid">
       Invalid Re-password
     </i>
+    <i style="color: red; margin: 10px; display: block;" *ngIf="">
+      Password must match.
+    </i>
     <br *ngIf="!isPasswordValid">
     <button class="btn btn-success" [disabled]="formSignUp.invalid">
       Sign In
@@ -46,6 +49,7 @@ import { FormGroup, FormControl, Validators, ValidationErrors } from '@angular/f
   </form>
   <pre>{{ formSignUp.value | json }}</pre>
   <pre>Valid: {{ formSignUp.valid }}</pre>
+  <pre>errors: {{ formSignUp.errors | json }}</pre>
   `,
   styles: [`input.ng-touched.ng-invalid { border: solid 1px red; }`]
 })
@@ -77,7 +81,8 @@ export class SignUpComponent {
 
   get isRePasswordValid() {
     const control = this.formSignUp.get('rePassword');
-    return control.invalid && control.touched;
+    const isNotMatched = this.formSignUp.errors && this.formSignUp.errors.error === 'mustMatch';
+    return control.touched && (control.invalid || isNotMatched);
   }
 }
 
