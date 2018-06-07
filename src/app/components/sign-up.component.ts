@@ -37,12 +37,9 @@ import { FormGroup, FormControl, Validators, ValidationErrors } from '@angular/f
       type="password"
     />
     <i style="color: red; margin: 10px; display: block;" *ngIf="isRePasswordValid">
-      Invalid Re-password
+      {{ rePasswordErrorMessage }}
     </i>
-    <i style="color: red; margin: 10px; display: block;" *ngIf="">
-      Password must match.
-    </i>
-    <br *ngIf="!isPasswordValid">
+    <br *ngIf="!isRePasswordValid">
     <button class="btn btn-success" [disabled]="formSignUp.invalid">
       Sign In
     </button>
@@ -84,6 +81,16 @@ export class SignUpComponent {
     if (errors.required) return 'Bạn cần nhập email';
     if (errors.email) return 'Email không hợp lệ';
     if (errors.gmail) return 'Email phải là gmail';
+    return null;
+  }
+
+  get rePasswordErrorMessage(): string {
+    const { errors } = this.formSignUp.get('rePassword');
+    if (errors.required) return 'Bạn cần nhập lại password';
+    if (errors.minlength) return 'Password cần tối thiểu 3 ký tự';
+    if (this.formSignUp.errors && this.formSignUp.errors.mustMatch) {
+      return 'Password phải khớp';
+    }
     return null;
   }
 
