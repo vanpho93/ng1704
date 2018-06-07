@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators, ValidationErrors } from '@angular/forms';
 
 @Component({
   selector: 'app-sign-up',
@@ -37,6 +37,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
   <pre>{{ formSignUp.value | json }}</pre>
   <pre>Valid: {{ formSignUp.valid }}</pre>
   `,
+  styles: [`input.ng-touched.ng-invalid { border: solid 1px red; }`]
 })
 
 export class SignUpComponent {
@@ -44,8 +45,8 @@ export class SignUpComponent {
 
   constructor() {
     this.formSignUp = new FormGroup({
-      email: new FormControl('teo@gmail.com', [Validators.required, Validators.email]),
-      password: new FormControl('123', [Validators.required, Validators.minLength(3)])
+      email: new FormControl('', [Validators.required, Validators.email, gmail]),
+      password: new FormControl('', [Validators.required, Validators.minLength(3)])
     });
   }
 
@@ -54,10 +55,18 @@ export class SignUpComponent {
   }
 
   get isPasswordValid() {
-    return this.formSignUp.get('password').invalid;
+    const control = this.formSignUp.get('password');
+    return control.invalid && control.touched;
   }
 
   get isEmailValid() {
-    return this.formSignUp.get('email').invalid;
+    const control = this.formSignUp.get('email');
+    return control.invalid && control.touched;
   }
+}
+
+function gmail(email: FormControl): ValidationErrors | null {
+  const value: string = email.value.trim();
+  if (value.endsWith('@gmail.com')) return null;
+  return { error: 'gmail' };
 }
