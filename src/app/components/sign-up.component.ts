@@ -23,8 +23,11 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
       formControlName="password"
       type="password"
     />
-    <br>
-    <button class="btn btn-success">
+    <i style="color: red; margin: 10px; display: block;" *ngIf="isPasswordValid">
+      Invalid Password
+    </i>
+    <br *ngIf="!isPasswordValid">
+    <button class="btn btn-success" [disabled]="formSignUp.invalid">
       Sign In
     </button>
   </form>
@@ -45,5 +48,9 @@ export class SignUpComponent {
 
   signIn() {
     alert(JSON.stringify(this.formSignUp.value));
+  }
+
+  get isPasswordValid() {
+    return this.formSignUp.get('password').invalid;
   }
 }
