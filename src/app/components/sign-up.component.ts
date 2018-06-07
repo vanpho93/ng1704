@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-sign-up',
@@ -29,6 +29,7 @@ import { FormGroup, FormControl } from '@angular/forms';
     </button>
   </form>
   <pre>{{ formSignUp.value | json }}</pre>
+  <pre>Valid: {{ formSignUp.valid }}</pre>
   `,
 })
 
@@ -37,8 +38,8 @@ export class SignUpComponent {
 
   constructor() {
     this.formSignUp = new FormGroup({
-      email: new FormControl('teo@gmail.com'),
-      password: new FormControl('123')
+      email: new FormControl('teo@gmail.com', [Validators.required, Validators.email]),
+      password: new FormControl('123', [Validators.required, Validators.minLength(3)])
     });
   }
 
