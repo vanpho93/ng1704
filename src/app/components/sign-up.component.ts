@@ -16,7 +16,10 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
       placeholder="Email"
       formControlName="email"
     />
-    <br>
+    <i style="color: red; margin: 10px; display: block;" *ngIf="isEmailValid">
+      Invalid Email
+    </i>
+    <br *ngIf="!isEmailValid">
     <input
       class="form-control"
       placeholder="Password"
@@ -52,5 +55,9 @@ export class SignUpComponent {
 
   get isPasswordValid() {
     return this.formSignUp.get('password').invalid;
+  }
+
+  get isEmailValid() {
+    return this.formSignUp.get('email').invalid;
   }
 }
