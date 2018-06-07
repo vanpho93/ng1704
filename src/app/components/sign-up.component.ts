@@ -58,7 +58,7 @@ export class SignUpComponent {
       email: new FormControl('', [Validators.required, Validators.email, gmail]),
       password: new FormControl('', [Validators.required, Validators.minLength(3)]),
       rePassword: new FormControl('', [Validators.required, Validators.minLength(3)])
-    });
+    }, mustMatch);
   }
 
   signIn() {
@@ -85,4 +85,11 @@ function gmail(email: FormControl): ValidationErrors | null {
   const value: string = email.value.trim();
   if (value.endsWith('@gmail.com')) return null;
   return { error: 'gmail' };
+}
+
+function mustMatch(formSignUp: FormGroup) {
+  const password = formSignUp.get('password').value;
+  const rePassword = formSignUp.get('rePassword').value;
+  if (password === rePassword) return null;
+  return { error: 'mustMatch' };
 }
