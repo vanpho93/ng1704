@@ -81,7 +81,7 @@ export class SignUpComponent {
 
   get isRePasswordValid() {
     const control = this.formSignUp.get('rePassword');
-    const isNotMatched = this.formSignUp.errors && this.formSignUp.errors.error === 'mustMatch';
+    const isNotMatched = this.formSignUp.errors && this.formSignUp.errors.mustMatch;
     return control.touched && (control.invalid || isNotMatched);
   }
 }
@@ -89,12 +89,12 @@ export class SignUpComponent {
 function gmail(email: FormControl): ValidationErrors | null {
   const value: string = email.value.trim();
   if (value.endsWith('@gmail.com')) return null;
-  return { error: 'gmail' };
+  return { gmail: true };
 }
 
 function mustMatch(formSignUp: FormGroup) {
   const password = formSignUp.get('password').value;
   const rePassword = formSignUp.get('rePassword').value;
   if (password === rePassword) return null;
-  return { error: 'mustMatch' };
+  return { mustMatch: true };
 }
